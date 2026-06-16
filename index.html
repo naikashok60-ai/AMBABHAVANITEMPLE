@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ಶ್ರೀ ಅಂಬಾಭವಾನಿ ದೇವಸ್ಥಾನ - ಕೆಳ ಕಬ್ಯಾಡಿ ಪರ್ಕಳ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@400;700&family=Noto+Sans+Kannada:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#D4870A;--gold-light:#F5C842;--crimson:#8B1A1A;--maroon:#4A0E0E;--ivory:#FDF8F0;--ivory-dark:#F0E8D8;--text-dark:#2C1810;--text-mid:#5C3A1E;--white:#FFFFFF;--shadow:rgba(74,14,14,0.18);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans Kannada','Lato',sans-serif;background:var(--ivory);color:var(--text-dark);overflow-x:hidden;}
+.top-bar{background:var(--maroon);color:var(--gold-light);font-size:13px;padding:5px 0;overflow:hidden;}
+.marquee-inner{display:inline-block;white-space:nowrap;animation:marquee 35s linear infinite;padding-left:100%;}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+header{background:linear-gradient(135deg,var(--maroon) 0%,#6B1414 50%,var(--maroon) 100%);padding:0;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px var(--shadow);}
+.header-inner{display:flex;align-items:center;padding:10px 20px;gap:16px;max-width:1200px;margin:0 auto;}
+.deity-circle{width:72px;height:72px;border-radius:50%;border:3px solid var(--gold-light);overflow:hidden;flex-shrink:0;background:var(--ivory-dark);display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(245,200,66,0.4);}
+.deity-circle img{width:100%;height:100%;object-fit:cover;display:none;}.deity-circle img.loaded{display:block;}
+.deity-circle .deity-placeholder{font-size:28px;color:var(--gold);}.deity-circle .deity-placeholder.hidden{display:none;}
+.temple-title{flex:1;text-align:center;}
+.temple-title h1{font-family:'Cinzel',serif;color:var(--gold-light);font-size:clamp(13px,2.8vw,21px);font-weight:900;letter-spacing:1px;text-shadow:0 2px 8px rgba(0,0,0,0.5);line-height:1.3;}
+.temple-title .kn-name{font-family:'Noto Sans Kannada',sans-serif;color:#F0D090;font-size:clamp(12px,2.2vw,17px);font-weight:700;display:block;margin-top:2px;}
+.temple-title p{color:#E8C88A;font-size:clamp(9px,1.5vw,12px);margin-top:2px;}
+nav{background:linear-gradient(90deg,var(--crimson),var(--maroon),var(--crimson));border-top:1px solid rgba(245,200,66,0.3);}
+nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;max-width:1200px;margin:0 auto;}
+nav ul li a{display:block;color:var(--gold-light);font-size:clamp(10px,1.4vw,12px);font-weight:600;padding:11px 13px;text-decoration:none;transition:all 0.2s;border-bottom:2px solid transparent;text-align:center;line-height:1.4;}
+nav ul li a .nav-kn{display:block;font-family:'Noto Sans Kannada',sans-serif;font-size:clamp(9px,1.2vw,11px);opacity:0.85;}
+nav ul li a:hover,nav ul li a.active{color:var(--white);border-bottom-color:var(--gold-light);background:rgba(255,255,255,0.07);}
+.hamburger{display:none;background:none;border:none;color:var(--gold-light);font-size:24px;cursor:pointer;padding:10px 16px;}
+@media(max-width:700px){.hamburger{display:block;}nav ul{display:none;flex-direction:column;}nav ul.open{display:flex;}nav ul li a{padding:10px 20px;text-align:left;}}
+.lotus-divider{text-align:center;margin:10px 0;color:var(--gold);font-size:20px;letter-spacing:8px;opacity:0.6;}
+.page-section{display:none;}.page-section.active{display:block;}
+.slideshow-wrap{background:var(--maroon);position:relative;overflow:hidden;max-height:420px;}
+.slideshow-container{position:relative;width:100%;}
+.slide{display:none;position:relative;}.slide.active{display:block;}
+.slide img{width:100%;height:380px;object-fit:cover;opacity:0.9;}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(74,14,14,0.88));color:var(--gold-light);text-align:center;padding:30px 20px 14px;font-family:'Noto Sans Kannada',sans-serif;font-size:15px;}
+.slide-placeholder{width:100%;height:300px;background:linear-gradient(135deg,var(--maroon),var(--crimson));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;}
+.slide-placeholder span{font-size:50px;}.slide-placeholder p{color:var(--gold-light);font-size:14px;}
+.slide-nav{position:absolute;bottom:14px;right:16px;display:flex;gap:6px;}
+.slide-nav button{width:28px;height:28px;border-radius:50%;border:2px solid var(--gold-light);background:rgba(74,14,14,0.7);color:var(--gold-light);cursor:pointer;font-size:13px;}
+.slide-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(245,200,66,0.4);cursor:pointer;transition:all 0.2s;}.dot.active{background:var(--gold-light);transform:scale(1.3);}
+.home-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1200px;margin:28px auto;padding:0 20px;}
+@media(max-width:700px){.home-columns{grid-template-columns:1fr;}}
+.col-card{background:var(--white);border-radius:12px;box-shadow:0 4px 20px var(--shadow);overflow:hidden;}
+.col-card-header{background:linear-gradient(135deg,var(--maroon),var(--crimson));color:var(--gold-light);font-size:14px;font-weight:700;padding:14px 20px;display:flex;align-items:center;gap:8px;}
+.col-card-header .kn{font-family:'Noto Sans Kannada',sans-serif;font-size:13px;}
+.col-card-body{padding:16px 20px;min-height:180px;}
+.update-item,.notif-item{border-bottom:1px solid var(--ivory-dark);padding:10px 0;}
+.update-item:last-child,.notif-item:last-child{border-bottom:none;}
+.update-item .date,.notif-item .badge{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:3px;}
+.notif-item .badge{background:var(--crimson);color:var(--white);padding:2px 8px;border-radius:20px;display:inline-block;}
+.update-item p,.notif-item p{font-size:13px;color:var(--text-mid);line-height:1.5;}
+.empty-state{text-align:center;color:#B0A090;font-size:13px;padding:30px 0;}
+.content-section{max-width:900px;margin:40px auto;padding:0 20px;}
+.section-title{font-family:'Cinzel',serif;color:var(--crimson);font-size:clamp(18px,4vw,26px);font-weight:700;text-align:center;margin-bottom:4px;}
+.section-title-kn{font-family:'Noto Sans Kannada',sans-serif;color:var(--crimson);font-size:clamp(16px,3.5vw,22px);font-weight:700;text-align:center;margin-bottom:6px;}
+.section-subtitle{text-align:center;color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:28px;}
+.about-card{background:var(--white);border-radius:14px;box-shadow:0 6px 30px var(--shadow);padding:34px 36px;line-height:1.9;color:var(--text-mid);font-size:15px;}
+.about-card p{margin-bottom:14px;}
+.notif-full-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding:0 20px 40px;}
+.notif-card{background:var(--white);border-radius:10px;box-shadow:0 3px 14px var(--shadow);padding:18px 22px;border-left:5px solid var(--crimson);}
+.notif-card .nc-date{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:4px;}
+.notif-card .nc-title{font-family:'Noto Sans Kannada',sans-serif;color:var(--crimson);font-size:15px;margin-bottom:6px;font-weight:600;}
+.notif-card .nc-body{font-size:13px;color:var(--text-mid);line-height:1.6;}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;max-width:1100px;margin:0 auto;padding:0 20px 40px;}
+.gallery-item{border-radius:10px;overflow:hidden;box-shadow:0 4px 16px var(--shadow);cursor:pointer;position:relative;background:var(--ivory-dark);aspect-ratio:4/3;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.gallery-item:hover img{transform:scale(1.06);}
+.gallery-item .g-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(74,14,14,0.88));color:var(--gold-light);font-size:12px;padding:22px 10px 8px;text-align:center;font-family:'Noto Sans Kannada',sans-serif;transform:translateY(100%);transition:transform 0.3s;}
+.gallery-item:hover .g-caption{transform:translateY(0);}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(10,3,3,0.96);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+.lightbox.open{display:flex;}.lightbox img{max-width:90vw;max-height:75vh;border-radius:8px;border:2px solid var(--gold);}
+.lightbox p{color:var(--gold-light);font-family:'Noto Sans Kannada',sans-serif;font-size:15px;}
+.lightbox-close{position:absolute;top:20px;right:24px;color:var(--gold-light);font-size:30px;cursor:pointer;background:none;border:none;}
+.news-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:18px;padding:0 20px 40px;}
+.news-card{background:var(--white);border-radius:10px;box-shadow:0 3px 14px var(--shadow);padding:20px 24px;}
+.news-card .news-date{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:6px;}
+.news-card h3{font-family:'Noto Sans Kannada',sans-serif;color:var(--crimson);font-size:16px;margin-bottom:8px;font-weight:700;}
+.news-card p{font-size:14px;color:var(--text-mid);line-height:1.7;}
+.contact-wrap{max-width:700px;margin:0 auto;padding:0 20px 40px;}
+.contact-card{background:var(--white);border-radius:14px;box-shadow:0 6px 30px var(--shadow);padding:36px;}
+.contact-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--ivory-dark);}
+.contact-row:last-child{border-bottom:none;}
+.contact-icon{font-size:22px;flex-shrink:0;width:36px;text-align:center;}
+.contact-info h4{font-family:'Noto Sans Kannada',sans-serif;color:var(--crimson);font-size:13px;margin-bottom:4px;font-weight:700;}
+.contact-info p{font-size:14px;color:var(--text-mid);line-height:1.6;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;max-width:1100px;margin:0 auto;padding:0 20px 40px;}
+.service-card{background:var(--white);border-radius:12px;box-shadow:0 4px 18px var(--shadow);padding:24px 20px;text-align:center;border-top:4px solid var(--gold);transition:transform 0.2s;}
+.service-card:hover{transform:translateY(-4px);}
+.service-icon{font-size:36px;margin-bottom:12px;}
+.service-card h3{font-family:'Noto Sans Kannada',sans-serif;color:var(--crimson);font-size:14px;margin-bottom:8px;font-weight:700;}
+.service-card p{font-size:13px;color:var(--text-mid);line-height:1.6;}
+.gallery-thumb-strip{background:linear-gradient(135deg,var(--maroon),#3A0A0A);padding:18px 16px 14px;text-align:center;border-top:2px solid rgba(212,135,10,0.35);}
+.gallery-thumb-strip-label{font-family:'Noto Sans Kannada',sans-serif;color:var(--gold-light);font-size:12px;letter-spacing:2px;margin-bottom:12px;opacity:0.85;}
+.gallery-thumb-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:1100px;margin:0 auto;}
+.gallery-thumb{width:72px;height:54px;border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid rgba(212,135,10,0.4);transition:all 0.22s;flex-shrink:0;}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery-thumb:hover{border-color:var(--gold-light);transform:scale(1.1);box-shadow:0 4px 12px rgba(212,135,10,0.5);}
+@media(max-width:500px){.gallery-thumb{width:56px;height:42px;}}
+footer{background:var(--maroon);color:#C8A870;text-align:center;padding:24px 20px;font-size:13px;line-height:1.9;}
+footer strong{color:var(--gold-light);font-family:'Noto Sans Kannada',sans-serif;}
+.om-watermark{position:fixed;bottom:60px;right:-20px;font-size:200px;color:rgba(212,135,10,0.04);z-index:0;pointer-events:none;font-family:serif;}
+@media(max-width:500px){.about-card{padding:20px 16px;}.contact-card{padding:20px 16px;}}
+</style>
+</head>
+<body>
+<div class="top-bar"><div class="marquee-inner">🙏 ಶ್ರೀ ಅಂಬಾಭವಾನಿ ದೇವಸ್ಥಾನಕ್ಕೆ ಸ್ವಾಗತ | ಜಯ ಅಂಬಾಭವಾನಿ ಮಾತಾ ಕಿ ಜೈ | Welcome to Shri Ambabhavani Temple | Kela Kabyadi Parkala 576107 🙏</div></div>
+<header>
+  <div class="header-inner">
+    <div class="deity-circle"><img id="deity-img" src="" alt="ಶ್ರೀ ದೇವಿ"><span class="deity-placeholder" id="deity-placeholder">🕉</span></div>
+    <div class="temple-title">
+      <h1>SHRI AMBABHAVANI TEMPLE</h1>
+      <span class="kn-name">ಶ್ರೀ ಅಂಬಾಭವಾನಿ ದೇವಸ್ಥಾನ</span>
+      <p>ನೋಂದಾಯಿತ • ಕೆಳ ಕಬ್ಯಾಡಿ, ಪರ್ಕಳ - 576107</p>
+    </div>
+    <div style="width:70px;"></div>
+  </div>
+</header>
+<nav>
+  <button class="hamburger" onclick="document.getElementById('main-nav').classList.toggle('open')">☰</button>
+  <ul id="main-nav">
+    <li><a href="#" class="active" onclick="showSection('home',this)">🏠 Home<span class="nav-kn">ಮುಖಪುಟ</span></a></li>
+    <li><a href="#" onclick="showSection('about',this)">🛕 About<span class="nav-kn">ದೇವಸ್ಥಾನದ ಬಗ್ಗೆ</span></a></li>
+    <li><a href="#" onclick="showSection('notification',this)">🔔 Notice<span class="nav-kn">ಅಧಿಸೂಚನೆ</span></a></li>
+    <li><a href="#" onclick="showSection('gallery',this)">🖼 Gallery<span class="nav-kn">ಚಿತ್ರಗಳು</span></a></li>
+    <li><a href="#" onclick="showSection('news',this)">📰 News<span class="nav-kn">ಇತ್ತೀಚಿನ ಸುದ್ದಿ</span></a></li>
+    <li><a href="#" onclick="showSection('contact',this)">📞 Contact<span class="nav-kn">ಸಂಪರ್ಕಿಸಿ</span></a></li>
+    <li><a href="#" onclick="showSection('services',this)">🪔 Services<span class="nav-kn">ಸೇವೆಗಳು</span></a></li>
+  </ul>
+</nav>
+<div class="om-watermark">ॐ</div>
+<section class="page-section active" id="section-home">
+  <div class="slideshow-wrap">
+    <div class="slideshow-container" id="slideshow-container"><div class="slide active"><img src="https://drive.google.com/thumbnail?id=1yVDV1o7hN8H-pG6TAWFHwRWT2Br9Xc-V&sz=w1600" data-drive-id="1yVDV1o7hN8H-pG6TAWFHwRWT2Br9Xc-V" data-try="0" onerror="handleImgErr(this)" alt=""><div class="slide-caption"></div></div><div class="slide"><img src="https://drive.google.com/thumbnail?id=1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv&sz=w1600" data-drive-id="1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv" data-try="0" onerror="handleImgErr(this)" alt=""><div class="slide-caption"></div></div></div>
+    <div class="slide-dots" id="slide-dots"><div class="dot active" onclick="goSlide(0)"></div><div class="dot" onclick="goSlide(1)"></div></div>
+    <div class="slide-nav" style=""><button onclick="changeSlide(-1)">‹</button><button onclick="changeSlide(1)">›</button></div>
+  </div>
+  <div class="lotus-divider">❁ ❁ ❁</div>
+  <div class="home-columns">
+    <div class="col-card"><div class="col-card-header">📋 <span class="kn">ಇತ್ತೀಚಿನ ಅಪ್ಡೇಟ್‌ಗಳು</span></div><div class="col-card-body"><div class="empty-state">ಯಾವುದೇ ಅಪ್ಡೇಟ್ ಇಲ್ಲ.</div></div></div>
+    <div class="col-card"><div class="col-card-header">🔔 <span class="kn">ಅಧಿಸೂಚನೆಗಳು</span></div><div class="col-card-body"><div class="empty-state">ಯಾವುದೇ ಅಧಿಸೂಚನೆ ಇಲ್ಲ.</div></div></div>
+  </div>
+</section>
+<section class="page-section" id="section-about">
+  <div class="content-section">
+    <div class="section-title-kn">ದೇವಸ್ಥಾನದ ಬಗ್ಗೆ</div>
+    <div class="section-title" style="font-size:clamp(14px,2.5vw,18px);margin-top:2px;">About The Temple</div>
+    <div class="section-subtitle">❁ ಶ್ರೀ ಅಂಬಾಭವಾನಿ ದೇವಸ್ಥಾನ ❁</div>
+    <div class="about-card"><p style="color:#B0A090;font-style:italic;">ದೇವಸ್ಥಾನ ಮಾಹಿತಿ ಇಲ್ಲ.</p></div>
+  </div>
+</section>
+<section class="page-section" id="section-notification">
+  <div class="content-section" style="margin-bottom:16px;">
+    <div class="section-title-kn">ಅಧಿಸೂಚನೆಗಳು</div>
+    <div class="section-title" style="font-size:clamp(14px,2.5vw,18px);">Notifications</div>
+    <div class="section-subtitle">❁ ಮುಖ್ಯ ಪ್ರಕಟಣೆಗಳು ❁</div>
+  </div>
+  <div class="notif-full-list"><div class="empty-state" style="text-align:center;padding:40px;color:#B0A090;">ಯಾವುದೇ ಅಧಿಸೂಚನೆ ಇಲ್ಲ.</div></div>
+</section>
+<section class="page-section" id="section-gallery">
+  <div class="content-section" style="margin-bottom:16px;">
+    <div class="section-title-kn">ಚಿತ್ರಗ್ಯಾಲರಿ</div>
+    <div class="section-title" style="font-size:clamp(14px,2.5vw,18px);">Photo Gallery</div>
+    <div class="section-subtitle">❁ ದೈವಿಕ ಕ್ಷಣಗಳು ❁</div>
+  </div>
+  <div class="gallery-grid"><div class="gallery-item" onclick="openLightbox(0)"><img src="https://drive.google.com/thumbnail?id=1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv&sz=w1600" data-drive-id="1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv" data-try="0" onerror="handleImgErr(this)" alt=""><div class="g-caption"></div></div><div class="gallery-item" onclick="openLightbox(1)"><img src="https://drive.google.com/thumbnail?id=1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv&sz=w1600" data-drive-id="1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv" data-try="0" onerror="handleImgErr(this)" alt=""><div class="g-caption"></div></div></div>
+</section>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="" onerror="handleImgErr(this)"><p id="lightbox-cap"></p>
+</div>
+<section class="page-section" id="section-news">
+  <div class="content-section" style="margin-bottom:16px;">
+    <div class="section-title-kn">ಇತ್ತೀಚಿನ ಸುದ್ದಿ</div>
+    <div class="section-title" style="font-size:clamp(14px,2.5vw,18px);">Latest News</div>
+    <div class="section-subtitle">❁ ದೇವಸ್ಥಾನ ಸುದ್ದಿ ❁</div>
+  </div>
+  <div class="news-list"><div class="empty-state" style="text-align:center;padding:40px;color:#B0A090;">ಯಾವುದೇ ಸುದ್ದಿ ಇಲ್ಲ.</div></div>
+</section>
+<section class="page-section" id="section-contact">
+  <div class="content-section" style="margin-bottom:16px;">
+    <div class="section-title-kn">ಸಂಪರ್ಕಿಸಿ</div>
+    <div class="section-title" style="font-size:clamp(14px,2.5vw,18px);">Contact Us</div>
+    <div class="section-subtitle">❁ ದೇವಸ್ಥಾನವನ್ನು ತಲುಪಿ ❁</div>
+  </div>
+  <div class="contact-wrap"><div class="contact-card">
+    <div class="contact-row"><div class="contact-icon">📍</div><div class="contact-info"><h4>ವಿಳಾಸ / Address</h4><p>Shri Ambabhavani Temple, Kela Kabyadi, Parkala - 576107</p></div></div>
+    <div class="contact-row"><div class="contact-icon">📞</div><div class="contact-info"><h4>ದೂರವಾಣಿ / Phone</h4><p>-</p></div></div>
+    <div class="contact-row"><div class="contact-icon">✉️</div><div class="contact-info"><h4>ಇಮೇಲ್ / Email</h4><p>-</p></div></div>
+    <div class="contact-row"><div class="contact-icon">🕐</div><div class="contact-info"><h4>ದರ್ಶನ ಸಮಯ / Darshan Timings</h4><p>ಬೆಳಿಗ್ಗೆ: 6:00 – 12:00 | ಸಂಜೆ: 5:00 – 8:30</p></div></div>
+    
+  </div></div>
+</section>
+<section class="page-section" id="section-services">
+  <div class="content-section" style="margin-bottom:16px;">
+    <div class="section-title-kn">ಸೇವೆಗಳು</div>
+    <div class="section-title" style="font-size:clamp(14px,2.5vw,18px);">Temple Services</div>
+    <div class="section-subtitle">❁ ದೇವಸ್ಥಾನ ಸೇವೆಗಳು ❁</div>
+  </div>
+  <div class="services-grid"><div class="empty-state" style="grid-column:1/-1;text-align:center;padding:60px;color:#B0A090;">ಯಾವುದೇ ಸೇವೆ ಇಲ್ಲ.</div></div>
+</section>
+<div class="gallery-thumb-strip">
+  <div class="gallery-thumb-strip-label">📷 ಚಿತ್ರಗ್ಯಾಲರಿ • Photo Gallery</div>
+  <div class="gallery-thumb-row"><div class="gallery-thumb" onclick="openLightbox(0)" title="Photo 1"><img src="https://drive.google.com/thumbnail?id=1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv&sz=w1600" data-drive-id="1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv" data-try="0" onerror="handleImgErr(this)" alt=""></div><div class="gallery-thumb" onclick="openLightbox(1)" title="Photo 2"><img src="https://drive.google.com/thumbnail?id=1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv&sz=w1600" data-drive-id="1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv" data-try="0" onerror="handleImgErr(this)" alt=""></div></div>
+</div>
+<footer>
+  <strong>ಶ್ರೀ ಅಂಬಾಭವಾನಿ ದೇವಸ್ಥಾನ</strong><br>
+  Shri Ambabhavani Temple (Registered) • ಕೆಳ ಕಬ್ಯಾಡಿ, ಪರ್ಕಳ - 576107<br>
+  <span style="font-size:22px;color:var(--gold)">🙏</span> ಜಯ ಅಂಬಾಭವಾನಿ ಮಾತಾ ಕಿ ಜೈ 🙏<br>
+  <span style="font-size:12px;color:#8A7060;">© 2024 ಶ್ರೀ ಅಂಬಾಭವಾನಿ ದೇವಸ್ಥಾನ.</span>
+</footer>
+<script>
+function showSection(id,el){document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));document.getElementById('section-'+id).classList.add('active');document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));if(el)el.classList.add('active');document.getElementById('main-nav').classList.remove('open');window.scrollTo(0,0);return false;}
+var GALLERY=[{"src":"https://drive.google.com/file/d/1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv/view?usp=drive_link","caption":""},{"src":"https://drive.google.com/file/d/1TAzDHu-oPD4AXHpnfc-hNGqxs996t0rv/view?usp=drive_link","caption":""}];
+function driveFileId(u){if(!u)return null;var m=u.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)||u.match(/[?&]id=([a-zA-Z0-9_-]+)/)||u.match(/\/d\/([a-zA-Z0-9_-]+)/);return m?m[1]:null;}
+function driveUrlVariants(id){return ['https://drive.google.com/thumbnail?id='+id+'&sz=w1600','https://drive.google.com/uc?export=view&id='+id,'https://lh3.googleusercontent.com/d/'+id];}
+var IMG_FALLBACK_SRC='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="#F0E8D8"/><text x="50%" y="48%" font-family="sans-serif" font-size="15" fill="#8B1A1A" text-anchor="middle">⚠ ಚಿತ್ರ ಲೋಡ್ ಆಗಲಿಲ್ಲ</text><text x="50%" y="64%" font-family="sans-serif" font-size="11" fill="#8B1A1A" text-anchor="middle">Image could not load — check sharing access</text></svg>');
+function handleImgErr(img){var id=img.getAttribute('data-drive-id');if(id){var variants=driveUrlVariants(id);var idx=parseInt(img.getAttribute('data-try')||'0',10)+1;if(idx<variants.length){img.setAttribute('data-try',idx);img.src=variants[idx];return;}}img.onerror=null;img.src=IMG_FALLBACK_SRC;}
+function applyImgSrc(el,src){el.removeAttribute('data-drive-id');el.removeAttribute('data-try');var id=driveFileId(src||'');if(id){el.setAttribute('data-drive-id',id);el.setAttribute('data-try','0');el.src=driveUrlVariants(id)[0];}else{el.src=src||'';}}
+function openLightbox(i){var g=GALLERY[i];if(!g)return;applyImgSrc(document.getElementById('lightbox-img'),g.src);document.getElementById('lightbox-cap').textContent=g.caption||'';document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+var currentSlide=0,slideTimer=null;
+function goSlide(n){var slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.dot');if(!slides.length)return;slides.forEach(s=>s.classList.remove('active'));dots.forEach(d=>d.classList.remove('active'));currentSlide=(n+slides.length)%slides.length;if(slides[currentSlide])slides[currentSlide].classList.add('active');if(dots[currentSlide])dots[currentSlide].classList.add('active');}
+function changeSlide(dir){goSlide(currentSlide+dir);}
+if(document.querySelectorAll('.slide').length>1){slideTimer=setInterval(function(){changeSlide(1);},4500);}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>
